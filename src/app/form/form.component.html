@@ -1,0 +1,160 @@
+<app-header></app-header>
+<div class="form-content">
+  <mat-card class="card">
+    <form class="form" action="#" (ngSubmit)="onSubmit()">
+      <div class="form-head">Employee Payroll form</div>
+      <div class="row-content">
+        <label class="label text" for="name">Name</label>
+        <input
+          type="text"
+          class="input"
+          (input)="onInput()"
+          [(ngModel)]="employee.name"
+          name="name"
+        />
+        <span class="error-output">{{ nameError }}</span>
+      </div>
+
+      <div class="row-content">
+        <label class="label text" for="profile">Profile image</label>
+        <div class="profile-radio-content">
+          <label>
+            <input
+              type="radio"
+              id="profile1"
+              name="profile"
+              value="../assets/Ellipse -1.png"
+              required
+              [(ngModel)]="employee.profilePic"
+            />
+            <img
+              class="profile"
+              id="image1"
+              src="../assets/Ellipse -1.png"
+              alt=""
+            />
+          </label>
+          <label>
+            <input
+              type="radio"
+              id="profile2"
+              name="profile"
+              value="../assets/Ellipse -2.png"
+              required
+              [(ngModel)]="employee.profilePic"
+            />
+            <img
+              class="profile"
+              id="image2"
+              src="../assets/Ellipse -2.png"
+              alt=""
+            />
+          </label>
+          <label>
+            <input
+              type="radio"
+              id="profile3"
+              name="profile"
+              value="../assets/Ellipse -3.png"
+              required
+              [(ngModel)]="employee.profilePic"
+            />
+            <img
+              class="profile"
+              id="image3"
+              src="../assets/Ellipse -3.png"
+              alt=""
+            />
+          </label>
+          <label>
+            <input
+              type="radio"
+              id="profile4"
+              name="profile"
+              value="../assets/Ellipse -4.png"
+              required
+              [(ngModel)]="employee.profilePic"
+            />
+            <img
+              class="profile"
+              id="image4"
+              src="../assets/Ellipse -4.png"
+              alt=""
+            />
+          </label>
+        </div>
+      </div>
+      <div class="row-content">
+        <label class="label text" for="gender">Gender</label>
+        <div>
+          <mat-radio-group
+            aria-label="Select an option"
+            name="gender"
+            [(ngModel)]="employee.gender"
+          >
+            <mat-radio-button value="male">Male</mat-radio-button>
+            <mat-radio-button value="female">Female</mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+      <div class="row-content">
+        <label class="label text" for="department">Department</label>
+        <div *ngFor="let department of departments; let i = index">
+          <mat-checkbox
+            class="checkbox"
+            [color]="'primary'"
+            type="checkbox"
+            name="{{ department.name }}"
+            (change)="getDepartmentList()"
+            [(ngModel)]="department.isChecked"
+            >{{ department.name }}</mat-checkbox
+          >
+        </div>
+      </div>
+      <div class="row-content">
+        <label class="label" for="">Salary</label>
+        <mat-form-field appearance="fill">
+          <mat-label>Select Salary</mat-label>
+          <mat-select name="salary" id="salary" [(ngModel)]="employee.salary">
+            <mat-option *ngFor="let empSalary of salary" [value]="empSalary">
+              {{ empSalary }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="row-content">
+        <label class="label text" for="startDate">Start Date</label>
+        <div>
+          <input
+            type="date"
+            id="date"
+            name="date"
+            [(ngModel)]="employee.startDate"
+          />
+        </div>
+      </div>
+      <div class="row-content">
+        <label class="label text" for="notes">Notes</label>
+        <textarea
+          id="notes"
+          class="input"
+          name="notes"
+          placeholder=""
+          style="height: 100px"
+          [(ngModel)]="employee.notes"
+        ></textarea>
+      </div>
+      <div class="button-parent">
+        <button class="cancelButton" class="CancelBtn" routerLink="/dashBoard">
+          Cancel
+        </button>
+        <div class="submit-reset">
+          <button type="submit" class="button submitButton">
+            {{ empId ? "Update" : "Submit" }}
+          </button>
+          <button type="reset" class="resetButton button">Reset</button>
+        </div>
+      </div>
+    </form>
+  </mat-card>
+</div>
